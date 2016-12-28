@@ -8,7 +8,9 @@
     "start": "concurrently \"npm run server:dev\" \"electron electron/dev\"",
     "server:dev": "webpack-dev-server  --inline --watch --progress --hot --content-base ./",
     "build": "NODE_ENV=prod webpack --progress",
-    "package":"npm run build"
+    "package:osx": "npm run build && npm run pack:osx",
+    "package:all": "electron-packager ./dist appstract --overwrite --no-prune --all",
+    "pack:osx": "electron-packager ./dist appstract --platform=darwin --arch=x64  --overwrite --no-prune"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +23,7 @@
     "babel-loader": "6.2.10",
     "concurrently": "^3.1.0",
     "copy-webpack-plugin": "^4.0.1",
+    "electron-packager": "^8.4.0",
     "html-loader": "0.4.4",
     "html-webpack-plugin": "^2.24.1",
     "install": "^0.8.4",

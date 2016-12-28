@@ -6,7 +6,7 @@
 # dependencies
 /node_modules
 /.idea
-
+/appstract-darwin-x64
 
 #System Files
 .DS_Store
