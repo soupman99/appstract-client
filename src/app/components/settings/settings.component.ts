@@ -20,12 +20,16 @@ export class SettingComponent {
         storage.get('settings')
             .then((data: any) => {
                 this.url = data.socketio.url;
+            }).catch(()=>{
+                //if no settings exist, set the default server location
+                this.url = 'http://localhost:4300'
+                this.saveUrl(this.url, false);
             })
 
 
     }
 
-    saveUrl(url: string) {
+    saveUrl(url: string, reload:boolean = true) {
         this.url = url;
 
         storage.set('settings', {
@@ -34,9 +38,12 @@ export class SettingComponent {
             }
         }).then(() => {
             console.log('The file was successfully written to the storage');
-            this.zone.run(() => {
-                this.settingsUpdate.emit('complete');
-            })
+            if(reload){
+                this.zone.run(() => {
+                    this.settingsUpdate.emit('complete');
+                })
+            }
+
         })
         .catch((err: any) => {
             console.error(err);
