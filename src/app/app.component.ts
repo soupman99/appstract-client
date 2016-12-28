@@ -1,4 +1,4 @@
-import {Component, OnInit, NgZone} from '@angular/core';
+import {Component, NgZone, ViewEncapsulation} from '@angular/core';
 
 import {ipcRenderer, shell} from  'electron';
 const storage = require('electron-storage');
@@ -10,7 +10,9 @@ import { MousePositionService } from './components/mouse/services/mousePosition.
 
 @Component({
     selector: 'my-app',
-    template: require('./app.component.pug')
+    template: require('./app.component.pug'),
+    styles:[require('./app.component.css')],
+    encapsulation: ViewEncapsulation.None
 
 })
 export class AppComponent{
