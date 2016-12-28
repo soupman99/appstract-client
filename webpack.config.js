@@ -1,57 +1,21 @@
-var webpack = require('webpack');
-var path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+/**
+ * @author: @AngularClass
+ */
 
-module.exports = {
-    target:'electron',
-    //context:'./',
-    entry: "./src/main.ts",
-    output: {
-        path: path.join(__dirname, "dist"),
-        filename: 'bundle.js',
-    },
-    resolve: {
-        extensions: ['', '.js', '.ts']
-    },
-    devtool: 'eval-source-map',
-    plugins: [
+// Look in ./config folder for webpack.dev.js
+switch (process.env.NODE_ENV) {
+    case 'prod':
+    case 'production':
+        module.exports = require('./webpack_config/webpack.prod');
+        break;
+    case 'test':
+    case 'testing':
+        module.exports = require('./webpack_config/webpack.test')({env: 'test'});
+        break;
+    case 'dev':
+    case 'development':
+    default:
+        //module.exports = require('./webpack_config/webpack.dev')({env: 'development'});
+        module.exports = require('./webpack_config/webpack.dev');
 
-    //     new HtmlWebpackPlugin({
-    //     title: 'My bbbbb',
-    //     template: 'index.html'
-    // }),
-
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'dev') // default value if not specified
-            }
-        })
-
-    ],
-
-    resolveLoader: {
-        root: path.join(__dirname, 'node_modules')
-    },
-
-    module: {
-        noParse: ['ws'],
-        loaders: [
-            {
-                test: /\.ts$/,
-                loaders: ['ts-loader','angular2-template-loader']
-            },
-            {
-                test: /\.(pug|jade)$/,
-                loader: 'pug-html-loader'
-            },
-            {
-                test: /\.(html|css)$/,
-                loader: 'raw-loader',
-                exclude: path.resolve(__dirname, 'index.html')
-
-            },
-        ]
-    },
-    externals: ['ws']
-
-};
+}

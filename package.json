@@ -5,8 +5,10 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm run server:dev\" \"electron electron\"",
-    "server:dev": "webpack-dev-server  --inline --watch --progress --hot --content-base ./"
+    "start": "concurrently \"npm run server:dev\" \"electron electron/dev\"",
+    "server:dev": "webpack-dev-server  --inline --watch --progress --hot --content-base ./",
+    "build": "NODE_ENV=prod webpack --progress",
+    "package":"npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +20,7 @@
     "awesome-typescript-loader": "3.0.0-beta.17",
     "babel-loader": "6.2.10",
     "concurrently": "^3.1.0",
+    "copy-webpack-plugin": "^4.0.1",
     "html-loader": "0.4.4",
     "html-webpack-plugin": "^2.24.1",
     "install": "^0.8.4",
@@ -31,7 +34,8 @@
     "webpack": "1.14.0",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-dev-server": "1.16.2",
-    "webpack-hot-middleware": "^2.14.0"
+    "webpack-hot-middleware": "^2.14.0",
+    "webpack-merge": "^2.0.0"
   },
   "dependencies": {
     "core-js": "^2.4.1",
