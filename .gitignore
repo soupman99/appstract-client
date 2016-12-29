@@ -6,6 +6,7 @@
 # dependencies
 /node_modules
 /.idea
+/builds
 /appstract-darwin-x64
 
 #System Files

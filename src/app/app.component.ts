@@ -24,8 +24,9 @@ export class AppComponent{
 
     }
 
-    viewCanvas(){
-        shell.openExternal('http://localhost:4200')
+
+    openUrl(input:string){
+        shell.openExternal(input)
     }
     quit(){
         console.log("sending quit")

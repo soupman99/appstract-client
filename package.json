@@ -10,7 +10,7 @@
     "build": "NODE_ENV=prod webpack --progress",
     "package:osx": "npm run build && npm run pack:osx",
     "package:all": "electron-packager ./dist appstract --overwrite --no-prune --all",
-    "pack:osx": "electron-packager ./dist appstract --platform=darwin --arch=x64  --overwrite --no-prune"
+    "pack:osx": "electron-packager ./dist appstract:client --platform=darwin --arch=x64  --out=builds/ --icon=assets/icon.icns --overwrite --no-prune"
   },
   "author": "",
   "license": "ISC",
@@ -41,8 +41,6 @@
     "webpack-merge": "^2.0.0"
   },
   "dependencies": {
-    "core-js": "^2.4.1",
-    "electron": "^1.4.13",
     "@angular/common": "~2.4.0",
     "@angular/compiler": "~2.4.0",
     "@angular/core": "~2.4.0",
@@ -52,6 +50,8 @@
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
     "@ng-bootstrap/ng-bootstrap": "1.0.0-alpha.15",
+    "core-js": "^2.4.1",
+    "electron": "^1.4.13",
     "electron-storage": "1.0.7",
     "ip": "1.1.4",
     "menubar": "5.2.0",
