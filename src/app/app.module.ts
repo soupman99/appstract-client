@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 
 import { SettingComponent } from './components/settings/settings.component';
 
+const menubar = require('menubar')
+
 
 import { SocketService } from './components/socket/services/socket.service';
 import { SettingService } from './components/settings/services/settings.service';

@@ -34,8 +34,10 @@ module.exports = {
         new CopyWebpackPlugin([
             // {dist}/file.txt
             { from: 'electron/prod/main.js' },
-            { from: 'electron//prod/package.json' }
-        ])
+            { from: 'electron/prod/package.json' },
+            { from :'electron/prod/IconTemplate.png'},
+            { from: 'electron/prod/IconTemplate@2x.png'}
+            ])
 
     ],
 

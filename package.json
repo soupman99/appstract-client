@@ -5,12 +5,13 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm run server:dev\" \"electron electron/dev\"",
+    "start":"npm run build && electron dist",
+    "start:hmr": "concurrently \"npm run server:dev\" \"electron electron/dev\"",
     "server:dev": "webpack-dev-server  --inline --watch --progress --hot --content-base ./",
-    "build": "NODE_ENV=prod webpack --progress",
+    "build": "NODE_ENV=prod webpack --progress && cd ./dist && npm i",
     "package:osx": "npm run build && npm run pack:osx",
     "package:all": "electron-packager ./dist appstract --overwrite --no-prune --all",
-    "pack:osx": "electron-packager ./dist appstract:client --platform=darwin --arch=x64  --out=builds/ --icon=assets/icon.icns --overwrite --no-prune"
+    "pack:osx": "electron-packager ./dist appstract:client --out=build --platform=darwin --arch=x64  --overwrite --no-prune"
   },
   "author": "",
   "license": "ISC",
@@ -54,7 +55,7 @@
     "electron": "^1.4.13",
     "electron-storage": "1.0.7",
     "ip": "1.1.4",
-    "menubar": "5.2.0",
+    "menubar": "^5.2.0",
     "reflect-metadata": "0.1.9",
     "rxjs": "5.0.2",
     "socket.io-client": "1.7.2",
