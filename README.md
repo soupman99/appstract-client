@@ -1,6 +1,6 @@
 # Appstract : Client
 
-Appstract is a data visualization experiment that uses mouse movements to create an abstract digital painting.
+Appstract is a data visualization experiment that uses electron/socket.io to capture mouse movements and angular2/express to create an abstract digital painting.
 
 Created By: [Ignite Partnership in Dallas](http://www.ignitepartnership.com/?utm_source=github&utm_campaign=appstract)
 
