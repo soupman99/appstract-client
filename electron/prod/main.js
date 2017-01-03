@@ -92,6 +92,11 @@ const path = require('path')
 const url = require('url')
 
 
+var relaunch = function(){
+    console.log('relaunching')
+    app.relaunch({args: process.argv.slice(1).concat(['--relaunch'])})
+    app.exit(0)
+}
 mb.on('ready', () => {
 
     console.log('app is ready')
@@ -100,9 +105,16 @@ mb.on('ready', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+
+mb.on('hide', ()=>{
+    relaunch()
+    console.log('hide')
+
+})
+
+
 ipcMain.on('restart', (event, arg) => {
-    app.relaunch({args: process.argv.slice(1).concat(['--relaunch'])})
-    app.exit(0)
+    relaunch()
 });
 
 ipcMain.on('quit', () => {
