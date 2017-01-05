@@ -2,6 +2,7 @@ import {Component, NgZone, ViewEncapsulation} from '@angular/core';
 
 import {ipcRenderer, shell} from  'electron';
 const storage = require('electron-storage');
+import {SettingService} from './components/settings/services/settings.service'
 
 
 import {SocketService} from './components/socket/services/socket.service';
@@ -17,16 +18,23 @@ import { MousePositionService } from './components/mouse/services/mousePosition.
 })
 export class AppComponent{
     connected = false;
-    message = 'asdf is the sample messagexxx.';
     public socket:any;
+    public viewUrl:string;
+    constructor(public socketService: SocketService, private mousePositionService: MousePositionService, private zone: NgZone, private settingsService:SettingService) {
 
-    constructor(public socketService: SocketService, private mousePositionService: MousePositionService, private zone: NgZone) {
+        settingsService.getSettings().then((data:any)=>{
+            let re = /https?:\/\/[^:\/]+/i;
+            this.viewUrl = re.exec(data.socketio.url).toString();
+        });
 
     }
 
 
     openUrl(input:string){
         shell.openExternal(input)
+    }
+    openAppstractViewer(){
+        shell.openExternal(`${this.viewUrl}:4200`)
     }
     quit(){
         console.log("sending quit")

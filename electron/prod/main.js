@@ -92,11 +92,17 @@ const path = require('path')
 const url = require('url')
 
 
+app.setLoginItemSettings({
+    openAtLogin:true
+})
+
 var relaunch = function(){
     console.log('relaunching')
     app.relaunch({args: process.argv.slice(1).concat(['--relaunch'])})
     app.exit(0)
 }
+
+
 mb.on('ready', () => {
 
     console.log('app is ready')

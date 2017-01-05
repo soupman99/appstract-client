@@ -91,6 +91,9 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
+app.setLoginItemSettings({
+    openAtLogin:true
+})
 
 var relaunch = function(){
     console.log('relaunching')
